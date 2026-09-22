@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1200">
+  <title>WAVE FLOOR</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- CRT scanline overlay -->
+  <div class="crt" aria-hidden="true"></div>
+
+  <div id="app">
+    <!-- ===== TOP BAR ===== -->
+    <header id="topbar">
+      <div id="logo">◆ WAVE FLOOR ◆</div>
+      <div id="controls">
+        <input id="symbol-input" type="text" placeholder="BTC, ETH, SOL…" autocomplete="off" spellcheck="false" maxlength="12">
+        <div id="mode-toggle">
+          <button id="mode-full" class="mode-btn active" type="button">전체 3축</button>
+          <button id="mode-swing" class="mode-btn" type="button">스윙</button>
+          <button id="mode-scalp" class="mode-btn" type="button">단타</button>
+        </div>
+        <button id="analyze-btn" type="button">▶ ANALYZE</button>
+      </div>
+      <div id="clocks">
+        <div class="clock"><span class="clabel">NYC</span><span id="clock-nyc">--:--:--</span></div>
+        <div class="clock"><span class="clabel">LDN</span><span id="clock-ldn">--:--:--</span></div>
+        <div class="clock"><span class="clabel">SEL</span><span id="clock-sel">--:--:--</span></div>
+      </div>
+    </header>
+
+    <!-- ===== BOARD (전광판) ===== -->
+    <section id="board">
+      <div id="board-info">
+        <span id="board-symbol">—</span>
+        <span id="board-price">—</span>
+        <span id="board-change"></span>
+        <span id="market-badge" class="closed"><i class="dot"></i><span id="market-badge-text">MARKET —</span></span>
+      </div>
+      <div id="chart-wrap">
+        <canvas id="chart"></canvas>
+        <div id="overlay-ctl">
+          <span class="ov-lab">봉</span>
+          <span id="tf-btns"></span>
+          <span class="ov-sep"></span>
+          <button class="ov-btn active" data-ov="all" type="button">전체</button>
+          <button class="ov-btn" data-ov="fib" type="button">피보만</button>
+          <button class="ov-btn" data-ov="off" type="button">끄기</button>
+        </div>
+        <div id="overlay-legend"></div>
+        <div id="chart-legend">
+          <span class="lg"><i style="background:#e8c84a"></i>MA20</span>
+          <span class="lg"><i style="background:#4a9de8"></i>MA50</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 다중 거래소 전광판 ===== -->
+    <section id="align-board">
+      <div id="ab-head">
+        <span id="ab-title">◆ 시간축 정렬 ◆</span>
+        <span id="ab-verdict">—</span>
+        <button id="ab-toggle" type="button">접기</button>
+      </div>
+      <div id="ab-rows"></div>
+    </section>
+
+    <!-- ===== 작도 패널 ===== -->
+    <section id="construct">
+      <div id="ct-head">
+        <span id="ct-title">◆ 작도 — 이 판정이 나온 과정 ◆</span>
+        <span id="ct-summary">—</span>
+        <button id="ct-toggle" type="button">접기</button>
+      </div>
+      <div id="ct-body">
+        <div id="ct-list"></div>
+        <div id="ct-detail"><div class="ct-empty">시나리오를 선택하면 작도 과정이 표시됩니다</div></div>
+      </div>
+    </section>
+
+    <!-- ===== STAGE (플로어 + 에이전트 콘솔) ===== -->
+    <div id="stage">
+    <main id="floor">
+      <!-- 시간축 데스크 3인 -->
+      <section id="room-horizon" class="room">
+        <div class="eq" aria-hidden="true"></div>
+        <div class="room-label">◆ 시간축 분석 데스크 ◆</div>
+        <div class="prop plant prop-tl"></div>
+        <div class="prop monitor prop-tr"></div>
+        <div class="room-body horizon-grid">
+          <div class="desk" id="desk-short">
+            <div class="bubble"></div>
+            <canvas class="sprite" width="48" height="48"></canvas>
+            <div class="nametag">DASH</div>
+            <div class="badge">단기 15m·1h</div>
+            <div class="bias-chip" id="bias-short">—</div>
+          </div>
+          <div class="desk" id="desk-mid">
+            <div class="bubble"></div>
+            <canvas class="sprite" width="48" height="48"></canvas>
+            <div class="nametag">SWING</div>
+            <div class="badge">중기 4h·1d</div>
+            <div class="bias-chip" id="bias-mid">—</div>
+          </div>
+          <div class="desk" id="desk-long">
+            <div class="bubble"></div>
+            <canvas class="sprite" width="48" height="48"></canvas>
+            <div class="nametag">TIDE</div>
+            <div class="badge">장기 1d·1w</div>
+            <div class="bias-chip" id="bias-long">—</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 정렬 판정실 -->
+      <section id="room-align" class="room">
+        <div class="eq" aria-hidden="true"></div>
+        <div class="room-label">◆ 정렬 판정실 ◆</div>
+        <div class="prop led-timer prop-tr"></div>
+        <div class="room-body align-body">
+          <div class="desk" id="desk-align">
+            <div class="bubble"></div>
+            <canvas class="sprite" width="48" height="48"></canvas>
+            <div class="nametag">PRISM</div>
+            <div class="badge">시간축 정렬</div>
+          </div>
+          <div id="align-panel">
+            <div class="ap-head">정렬 상태</div>
+            <div id="ap-state">판정 대기 중</div>
+            <div class="ap-row"><span class="ap-key">큰 방향</span><span id="ap-primary">—</span></div>
+            <div class="ap-row"><span class="ap-key">단기 자세</span><span id="ap-tactical">—</span></div>
+            <div id="ap-scenario"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 실행 데스크 -->
+      <section id="room-trading" class="room">
+        <div class="eq" aria-hidden="true"></div>
+        <div class="room-label">◆ 실행 데스크 ◆</div>
+        <div class="prop monitor prop-tr"></div>
+        <div class="room-body trading-body">
+          <div class="trading-seats">
+            <div class="desk" id="desk-pilot">
+              <div class="bubble"></div>
+              <canvas class="sprite" width="48" height="48"></canvas>
+              <div class="nametag">PILOT</div>
+              <div class="badge">실행 설계</div>
+            </div>
+          </div>
+          <div id="decision-panel">
+            <div class="dp-head">실행 계획</div>
+            <div id="dp-action">판정 대기 중</div>
+            <div id="dp-gauge"><div id="dp-gauge-fill"></div><span id="dp-conf"></span></div>
+            <div id="dp-horizon-tag" class="hidden">—</div>
+            <div id="dp-levels">
+              <div class="dp-row"><span class="dp-key">진입</span><span id="dp-entry">—</span></div>
+              <div class="dp-row"><span class="dp-key">손절</span><span id="dp-stop">—</span></div>
+              <div class="dp-row"><span class="dp-key">1차 목표</span><span id="dp-target">—</span></div>
+              <div class="dp-row"><span class="dp-key">2차 목표</span><span id="dp-target2">—</span></div>
+              <div class="dp-row"><span class="dp-key">손익비</span><span id="dp-rr">—</span></div>
+              <div class="dp-row"><span class="dp-key">비중</span><span id="dp-sizing2">—</span></div>
+            </div>
+            <div id="dp-triggers" class="hidden"></div>
+            <div id="dp-rationale"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== AGENT CONSOLE (터미널 로그) ===== -->
+    <aside id="console">
+      <div id="console-head">
+        <span id="console-title">◆ AGENT CONSOLE ◆</span>
+        <div id="console-tabs">
+          <button class="ctab active" data-filter="all" type="button">전체</button>
+          <button class="ctab" data-filter="agent" type="button">에이전트</button>
+          <button class="ctab" data-filter="wave" type="button">지표·파동</button>
+        </div>
+      </div>
+      <div id="console-body"></div>
+      <button id="console-jump" class="hidden" type="button">↓ 새 로그</button>
+      <div id="console-status"><span id="cs-stage">대기 중</span><span id="cs-count"></span></div>
+    </aside>
+    </div>
+
+    <!-- ===== TICKER TAPE ===== -->
+    <div id="tape"><div id="tape-track"></div></div>
+
+    <!-- ===== DISCLAIMER ===== -->
+    <footer id="disclaimer">AI 시뮬레이션 — 투자 조언이 아님</footer>
+  </div>
+
+  <!-- ===== MODAL ===== -->
+  <div id="modal" class="hidden">
+    <div class="modal-box">
+      <button id="modal-close" type="button">✕</button>
+      <div id="modal-title"></div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== TOASTS ===== -->
+  <div id="toasts"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

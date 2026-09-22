@@ -1,0 +1,11 @@
+node_modules/
+reports/*.md
+reports/decisions.json
+.env
+
+# vendor: 대용량·임베디드 repo는 추적하지 않는다
+vendor/ta-venv/
+vendor/TradingAgents/
+
+# 원서 스캔 이미지 (327개, 41MB) — 코드·문서만 커밋하고 로컬에만 남긴다
+docs/neely/figs/

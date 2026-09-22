@@ -1,0 +1,132 @@
+
+
+----- p.1 -----
+The Hal-monic Patterns 
+DK -할머니의하모닉 (김옥자)
+
+----- p.2 -----
+Gartley Pattern 
+ 
+B point : 0.618XA (0.786 닿기 전까지 유효) 
+C point : 0.382 - 0.886AB. A 초과 전까지 인정 
+ 
+PRZ 
+- D point : 0.786XA (0.886 닿기 전까지 유효, 다만 예외 有 = Deep Gartley Pattern) 
+- BC projection : 1.13 / 1.272 / 1.414 / 1.618 BC 
+- AB = CD type : 1 / 1.27 AB = CD 
+ 
+TP & SL 
+TP1 : 0.382 AD, TP2 : 0.618 AD, SL : 1.0 XA 
+ 
+Notes 
+- 전체 PRZ test. 특히 0.786XA와 AB = CD를 기다려야 함. 
+- 전체 PRZ 테스트가 이루어지는 즉시 되돌려야 함. 
+ 
+예외 : Deep Gartley Pattern 
+1.0 AB = CD가 0.786을 초과할 경우.
+
+----- p.3 -----
+Deep Gartley Pattern 
+ 
+B point : 0.618XA (0.786 닿기 전까지 유효, Tolerance 3%) 
+C point : 0.382 - 0.886AB. A 초과 전까지 인정 
+ 
+PRZ 
+- D point : 0.786 - 0.886XA 
+- BC projection : 1.618 / 2.0 / 2.24 / 2.618 BC 
+- AB = CD type : 1.0 AB = CD 
+ 
+TP & SL 
+TP1 : 0.382AD, TP2 : 0.618AD, SL : 1.0XA - 1.13XA (AB = CD의 완성 지점에 따라 다름.)
+
+----- p.4 -----
+Bat Pattern 
+ 
+B point : 0.382 - 0.5XA (0.618 닿기 전까지 유효) 
+C point : 0.382 - 0.886AB. A 초과 전까지 인정 
+ 
+PRZ 
+- D point : 0.886XA 
+- BC projection : 1.618 - 2.618 BC 
+- AB = CD type : 1.0 / 1.27 / 1.618 AB = CD 
+ 
+TP & SL 
+TP1 : 0.382AD, TP2 : 0.618AD, SL : 1.13XA 
+ 
+Notes 
+- 최소 AB = CD 
+- 패턴 완성의 초기 테스트는 1.0XA에 가깝게 테스트 할 수 있다.
+
+----- p.5 -----
+Alternate Bat Pattern 
+ 
+B point : Max 0.382XA 
+C point : 0.382 - 0.886AB. A 초과 전까지 인정 
+ 
+PRZ 
+- D point : 1.13XA 
+- BC projection : 2.0 / 2.24 / 2.618 / 3.14 / 3.618 BC 
+- AB = CD type : 1.618 AB = CD 
+ 
+TP & SL 
+TP1 : 0.382AD, TP2 : 0.618AD, SL : 1.27XA
+
+----- p.6 -----
+Crab Pattern 
+ 
+B point : 0.382 - 0.618XA (0.786 닿기 전까지 유효) 
+C point : 0.382 - 0.886AB. A 초과 전까지 인정 
+ 
+PRZ 
+- D point : 1.618XA 
+- BC projection : 2.618 / 3.14 / 3.618 BC 
+- AB = CD type : 1.27 / 1.618 AB = CD 
+ 
+TP & SL 
+TP1 : 0.382AD, TP2 : 0.618AD, SL : 2.0XA
+
+----- p.7 -----
+Deep Crab Pattern 
+ 
+B point : 0.886XA  
+C point : 0.382 - 0.886AB. A 초과 전까지 인정 
+ 
+PRZ 
+- D point : 1.618XA 
+- BC projection : 2.0 / 2.24 / 2.618 / 3.14 / 3.618 BC 
+- AB = CD type : 1.0 / 1.27 / 1.618 AB = CD 
+ 
+Special Situation) D point : 1.902XA 
+ 
+TP & SL 
+TP1 : 0.382AD, TP2 : 0.618AD, SL : 2.0XA
+
+----- p.8 -----
+Butterfly Pattern 
+ 
+B point : 0.786XA (0.886 닿기 전까지 유효) 
+C point : 0.382 - 0.886AB. A 초과 전까지 인정 
+ 
+PRZ 
+- D point : 1.272XA 
+- BC projection : 1.618 / 2.0 / 2.24 BC 
+- AB = CD type : 1.0 / 1.27 AB = CD 
+ 
+TP & SL 
+TP1 : 0.382AD, TP2 : 0.618AD, SL : 1.414XA
+
+----- p.9 -----
+Shark Pattern 
+ 
+B point : 0.382 - 0.618XA 
+C point : 1.13 - 1.618AB 
+ 
+PRZ 
+- D point : 0.886 - 1.13XC 
+- BC projection : 1.618 / 2.0 / 2.24 BC 
+ 
+TP & SL 
+TP1 : AB = CD or 0.5CD, TP2 : 0.886CD, SL : 1.13 - 1.27XC 
+ 
+샤크 이후 5-0 Pattern (PRZ AB = CD) 
+TP 1 : C point. SL : 0.618BC. 추세추종
